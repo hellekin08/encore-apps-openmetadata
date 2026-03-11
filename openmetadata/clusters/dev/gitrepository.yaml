@@ -1,0 +1,12 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: encore-apps-openmetadata
+  namespace: cx-fluxed-openmetadata-encore-ns
+spec:
+  interval: 1m
+  url: https://github.com/hellekin08/encore-apps-openmetadata.git
+  ref:
+    branch: main
+  secretRef:
+    name: encore-infra-git-key

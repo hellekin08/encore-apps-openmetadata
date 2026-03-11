@@ -1,0 +1,13 @@
+creation_rules:
+  # Flux: Kubernetes Secret manifests (encrypt stringData)
+  - path_regex: openmetadata/.*secrets\.dev\.yaml$
+    azure_keyvault: https://kv-encore-dev-gwc-int.vault.azure.net/keys/encore-sops-key/0b82dc5fcfd1487d9903f4375cb9a83b
+    encrypted_regex: "^(data|stringData)$"
+
+  - path_regex: openmetadata/.*secrets\.test\.yaml$
+    azure_keyvault: https://kv-encore-test-gwc-int.vault.azure.net/keys/encore-sops-key/e9fc2cac0a41435aa4cca2176c635aaf
+    encrypted_regex: "^(data|stringData)$"
+
+  - path_regex: openmetadata/.*secrets\.prod\.yaml$
+    azure_keyvault: https://kv-encore-prod-gwc-int.vault.azure.net/keys/encore-sops-key/9bd262467630455a9acffe6a5e5b7da0
+    encrypted_regex: "^(data|stringData)$"
