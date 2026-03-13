@@ -6,6 +6,8 @@ spec:
   interval: 1m
   timeout: 5m
   serviceAccountName: default-login-serviceaccount
+  dependsOn:
+    - name: openmetadata-dependencies
   install:
     remediation:
       retries: 3

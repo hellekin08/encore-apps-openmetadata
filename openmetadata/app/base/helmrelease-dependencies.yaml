@@ -1,0 +1,35 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openmetadata-dependencies
+spec:
+  interval: 1m
+  timeout: 10m
+  serviceAccountName: default-login-serviceaccount
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: openmetadata-dependencies
+      version: "1.12.1"
+      sourceRef:
+        kind: HelmRepository
+        name: open-metadata
+      interval: 5m
+  values:
+    mysql:
+      enabled: true
+      fullnameOverride: "mysql"
+      auth:
+        existingSecret: mysql-secrets
+        username: openmetadata_user
+        database: openmetadata_db
+    opensearch:
+      enabled: true
+      fullnameOverride: opensearch
+    airflow:
+      enabled: true
