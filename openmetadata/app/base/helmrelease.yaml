@@ -40,6 +40,18 @@ spec:
         pipelineServiceClientConfig:
           type: "k8s"
           k8s:
+            serviceAccountName: openmetadata-ingestion
+            ingestionImage: docker.getcollate.io/openmetadata/ingestion-base:1.12.1
+            backoffLimit: 3
+            activeDeadlineSeconds: 7200
+            ttlSecondsAfterFinished: 86400
+            resources:
+              requests:
+                cpu: 500m
+                memory: 1Gi
+              limits:
+                cpu: "2"
+                memory: 4Gi
             securityContext:
               runAsNonRoot: true
               runAsUser: 1000
