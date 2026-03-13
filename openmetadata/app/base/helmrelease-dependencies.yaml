@@ -63,12 +63,12 @@ spec:
       dags:
         persistence:
           enabled: true
-          storageClassName: azurefile-csi
+          storageClassName: enerkube-blob-premium-lrs-dynamic
           accessMode: ReadWriteMany
       logs:
         persistence:
           enabled: true
-          storageClassName: azurefile-csi
+          storageClassName: enerkube-blob-premium-lrs-dynamic
       securityContexts:
         pod:
           runAsUser: 50000
