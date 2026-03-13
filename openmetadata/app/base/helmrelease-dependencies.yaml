@@ -28,6 +28,17 @@ spec:
         existingSecret: mysql-secrets
         username: openmetadata_user
         database: openmetadata_db
+      initdbScripts:
+        init_airflow_db_scripts.sql: |
+          CREATE DATABASE IF NOT EXISTS airflow_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+          CREATE USER IF NOT EXISTS 'airflow_user'@'%' IDENTIFIED BY 'airflow_pass';
+          GRANT ALL PRIVILEGES ON airflow_db.* TO 'airflow_user'@'%' WITH GRANT OPTION;
+          COMMIT;
+        init_openmetadata_db_scripts.sql: |
+          CREATE DATABASE IF NOT EXISTS openmetadata_db;
+          CREATE USER IF NOT EXISTS 'openmetadata_user'@'%' IDENTIFIED BY 'openmetadata_password';
+          GRANT ALL PRIVILEGES ON openmetadata_db.* TO 'openmetadata_user'@'%' WITH GRANT OPTION;
+          COMMIT;
     opensearch:
       enabled: true
       fullnameOverride: opensearch
