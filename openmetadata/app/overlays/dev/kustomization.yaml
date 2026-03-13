@@ -6,6 +6,5 @@ resources:
   # - secrets.dev.yaml
   - secrets.yaml
   - ingress.yaml
-  - rbac.yaml
 patches:
   - path: helmrelease-patch.yaml

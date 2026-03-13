@@ -4,3 +4,4 @@ resources:
   - helmrepository.yaml
   - helmrelease-dependencies.yaml
   - helmrelease.yaml
+  - rbac.yaml
