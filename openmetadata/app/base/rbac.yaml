@@ -47,7 +47,7 @@ metadata:
   name: openmetadata-ingestion
 subjects:
   - kind: ServiceAccount
-    name: openmetadata
+    name: openmetadata-ingestion
     namespace: cx-fluxed-openmetadata-encore-ns
 roleRef:
   apiGroup: rbac.authorization.k8s.io
