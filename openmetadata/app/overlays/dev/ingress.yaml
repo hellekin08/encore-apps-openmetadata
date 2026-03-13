@@ -21,4 +21,4 @@ spec:
   tls:
     - hosts:
         - fluxed-openmetadata.encore-dev.enercity.cloud
-      secretName: tls-openmetadata-ingress
+      secretName: tls-fluxed-openmetadata-ingress
