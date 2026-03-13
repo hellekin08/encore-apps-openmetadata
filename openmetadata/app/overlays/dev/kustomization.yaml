@@ -5,3 +5,5 @@ resources:
   - ../../base
   # - secrets.dev.yaml
   - secrets.yaml
+patches:
+  - path: helmrelease-patch.yaml
