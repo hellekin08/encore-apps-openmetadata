@@ -60,6 +60,12 @@ spec:
     airflow:
       enabled: true
       gid: 50000
+      createUserJob:
+        useHelmHooks: false
+        applyCustomEnv: false
+      migrateDatabaseJob:
+        useHelmHooks: false
+        applyCustomEnv: false
       dags:
         persistence:
           enabled: true
