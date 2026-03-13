@@ -58,7 +58,7 @@ spec:
         runAsGroup: 1000
         runAsNonRoot: true
     airflow:
-      enabled: true
+      enabled: false
       gid: 50000
       createUserJob:
         useHelmHooks: false
