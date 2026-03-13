@@ -46,4 +46,4 @@ spec:
             rbac:
               enabled: false
     omjobOperator:
-      enabled: true
+      enabled: false
