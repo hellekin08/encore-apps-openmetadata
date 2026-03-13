@@ -49,6 +49,15 @@ spec:
     airflow:
       enabled: true
       gid: 50000
+      dags:
+        persistence:
+          enabled: true
+          storageClassName: azurefile-csi
+          accessMode: ReadWriteMany
+      logs:
+        persistence:
+          enabled: true
+          storageClassName: azurefile-csi
       securityContexts:
         pod:
           runAsUser: 50000
