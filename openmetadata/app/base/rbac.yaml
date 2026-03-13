@@ -47,6 +47,9 @@ metadata:
   name: openmetadata-ingestion
 subjects:
   - kind: ServiceAccount
+    name: openmetadata
+    namespace: cx-fluxed-openmetadata-encore-ns
+  - kind: ServiceAccount
     name: openmetadata-ingestion
     namespace: cx-fluxed-openmetadata-encore-ns
 roleRef:
