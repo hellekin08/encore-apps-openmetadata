@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openmetadata
+  annotations:
+    acme.cert-manager.io/dns01-edit-in-place: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: fluxed-openmetadata.encore-dev.enercity.cloud
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: openmetadata
+                port:
+                  number: 8585
+  tls:
+    - hosts:
+        - fluxed-openmetadata.encore-dev.enercity.cloud
+      secretName: tls-openmetadata-ingress

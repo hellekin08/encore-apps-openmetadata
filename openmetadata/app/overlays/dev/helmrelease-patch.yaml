@@ -5,17 +5,4 @@ metadata:
 spec:
   values:
     ingress:
-      enabled: true
-      className: nginx
-      annotations:
-        acme.cert-manager.io/dns01-edit-in-place: "true"
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-      hosts:
-        - host: fluxed-openemetdata.encore-dev.enercity.cloud
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: fluxed-openmetadata-ingress-tls-certs
-          hosts:
-            - fluxed-openemetdata.encore-dev.enercity.cloud
+      enabled: false
