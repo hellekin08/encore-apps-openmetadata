@@ -31,5 +31,50 @@ spec:
     opensearch:
       enabled: true
       fullnameOverride: opensearch
+      persistence:
+        enableInitChown: false
+      podSecurityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
     airflow:
       enabled: true
+      gid: 50000
+      securityContexts:
+        pod:
+          runAsUser: 50000
+          runAsGroup: 50000
+          fsGroup: 50000
+          runAsNonRoot: true
+        containers:
+          runAsUser: 50000
+          runAsGroup: 50000
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+      statsd:
+        securityContexts:
+          pod:
+            runAsUser: 65534
+            runAsGroup: 65534
+            fsGroup: 65534
+            runAsNonRoot: true
+          container:
+            runAsUser: 65534
+            runAsGroup: 65534
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
