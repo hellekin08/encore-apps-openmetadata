@@ -10,10 +10,12 @@ spec:
       annotations:
         acme.cert-manager.io/dns01-edit-in-place: "true"
         cert-manager.io/cluster-issuer: letsencrypt-prod
-      path: "/"
-      pathType: "Prefix"
       hosts:
-        - name: fluxed-openemetdata.encore-dev.enercity.cloud
-          tls:
-            enabled: true
-            secretName: airflow-ingress-tls-certs
+        - host: fluxed-openemetdata.encore-dev.enercity.cloud
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: fluxed-openmetadata-ingress-tls-certs
+          hosts:
+            - fluxed-openemetdata.encore-dev.enercity.cloud
