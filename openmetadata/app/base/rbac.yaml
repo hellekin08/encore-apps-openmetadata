@@ -19,6 +19,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: openmetadata
+    namespace: cx-fluxed-openmetadata-encore-ns
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
