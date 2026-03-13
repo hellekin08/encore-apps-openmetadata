@@ -10,7 +10,7 @@ spec:
   serviceAccountName: default-login-serviceaccount
   sourceRef:
     kind: GitRepository
-    name: encore-infrastructure
+    name: encore-apps-openmetadata
   decryption:
     provider: sops
   wait: true
