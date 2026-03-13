@@ -13,5 +13,5 @@ spec:
     name: encore-apps-openmetadata
   decryption:
     provider: sops
-  wait: true
+  wait: false
   timeout: 15m
