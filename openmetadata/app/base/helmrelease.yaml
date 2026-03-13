@@ -23,6 +23,10 @@ spec:
         name: open-metadata
       interval: 5m
   values:
+    startupProbe:
+      failureThreshold: 15
+      periodSeconds: 60
+      timeoutSeconds: 5
     podSecurityContext:
       runAsNonRoot: true
       runAsUser: 1000
