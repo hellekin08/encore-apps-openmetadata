@@ -42,7 +42,7 @@ spec:
     openmetadata:
       config:
         pipelineServiceClientConfig:
-          type: "k8s"
+          type: "airflow"
           k8s:
             serviceAccountName: openmetadata-ingestion
             ingestionImage: docker.getcollate.io/openmetadata/ingestion-base:1.12.1

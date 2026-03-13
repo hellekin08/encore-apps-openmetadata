@@ -1,0 +1,45 @@
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: mutate-openmetadata-automation-pods
+spec:
+  background: false
+  rules:
+    - name: harden-openmetadata-automation-pods
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+              selector:
+                matchLabels:
+                  app.kubernetes.io/component: automation
+                  app.kubernetes.io/managed-by: openmetadata
+                  app.kubernetes.io/name: openmetadata
+      mutate:
+        patchStrategicMerge:
+          spec:
+            securityContext:
+              runAsNonRoot: true
+              runAsGroup: 1000
+              fsGroup: 1000
+            containers:
+              - (name): "*"
+                securityContext:
+                  runAsNonRoot: true
+                  runAsUser: 1000
+                  runAsGroup: 1000
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                      - ALL
+            initContainers:
+              - (name): "*"
+                securityContext:
+                  runAsNonRoot: true
+                  runAsUser: 1000
+                  runAsGroup: 1000
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                      - ALL
