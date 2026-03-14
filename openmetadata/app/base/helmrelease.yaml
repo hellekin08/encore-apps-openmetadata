@@ -42,7 +42,7 @@ spec:
     openmetadata:
       config:
         pipelineServiceClientConfig:
-          type: "airflow"
+          type: "k8s"
           k8s:
             serviceAccountName: openmetadata-ingestion
             ingestionImage: docker.getcollate.io/openmetadata/ingestion-base:1.12.1
@@ -55,9 +55,9 @@ spec:
               runAsGroup: 1000
               fsGroup: 1000
               # does not work!
-              #allowPrivilegeEscalation: false
-              #capabilities:
-              #drop: ["ALL"]
+              # allowPrivilegeEscalation: false
+              # capabilities:
+              # drop: ["ALL"]
             rbac:
               enabled: false
     omjobOperator:
