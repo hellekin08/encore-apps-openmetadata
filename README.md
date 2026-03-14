@@ -74,3 +74,14 @@ If a resource gets stuck deleting, remove its finalizer:
 ```bash
 kubectl patch <resource-type> <name> -n cx-fluxed-openmetadata-encore-ns --type json -p "[{\"op\":\"remove\",\"path\":\"/metadata/finalizers\"}]"
 ```
+
+Flux reconcil commands:
+```bash
+# fetch the Git repo again
+flux reconcile source git encore-apps-openmetadata -n cx-fluxed-openmetadata-encore-ns
+# tells kustomize-controller to rebuild and apply the overlay from the latest Git artifact     
+flux reconcile kustomization openmetadata -n cx-fluxed-openmetadata-encore-ns         
+# a specific healm release
+flux reconcile helmrelease openmetadata-dependencies -n cx-fluxed-openmetadata-encore-ns                                                         
+flux reconcile helmrelease openmetadata -n cx-fluxed-openmetadata-encore-ns     
+```
