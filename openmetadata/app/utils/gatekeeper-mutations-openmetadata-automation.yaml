@@ -1,0 +1,151 @@
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: omjob-pod-securitycontext
+spec:
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  match:
+    scope: Namespaced
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/component: automation
+        app.kubernetes.io/managed-by: openmetadata
+        app.kubernetes.io/name: openmetadata
+  location: "spec.securityContext"
+  parameters:
+    assign:
+      value:
+        runAsNonRoot: true
+        runAsGroup: 1000
+        fsGroup: 1000
+---
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: omjob-container-runasnonroot
+spec:
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  match:
+    scope: Namespaced
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/component: automation
+        app.kubernetes.io/managed-by: openmetadata
+        app.kubernetes.io/name: openmetadata
+  location: "spec.containers[name:*].securityContext.runAsNonRoot"
+  parameters:
+    assign:
+      value: true
+---
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: omjob-container-runasuser
+spec:
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  match:
+    scope: Namespaced
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/component: automation
+        app.kubernetes.io/managed-by: openmetadata
+        app.kubernetes.io/name: openmetadata
+  location: "spec.containers[name:*].securityContext.runAsUser"
+  parameters:
+    assign:
+      value: 1000
+---
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: omjob-container-runasgroup
+spec:
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  match:
+    scope: Namespaced
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/component: automation
+        app.kubernetes.io/managed-by: openmetadata
+        app.kubernetes.io/name: openmetadata
+  location: "spec.containers[name:*].securityContext.runAsGroup"
+  parameters:
+    assign:
+      value: 1000
+---
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: omjob-container-allowprivilegeescalation
+spec:
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  match:
+    scope: Namespaced
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/component: automation
+        app.kubernetes.io/managed-by: openmetadata
+        app.kubernetes.io/name: openmetadata
+  location: "spec.containers[name:*].securityContext.allowPrivilegeEscalation"
+  parameters:
+    assign:
+      value: false
+---
+apiVersion: mutations.gatekeeper.sh/v1
+kind: ModifySet
+metadata:
+  name: omjob-container-drop-all-capabilities
+spec:
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  match:
+    scope: Namespaced
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/component: automation
+        app.kubernetes.io/managed-by: openmetadata
+        app.kubernetes.io/name: openmetadata
+  location: "spec.containers[name:*].securityContext.capabilities.drop"
+  parameters:
+    operation: merge
+    values:
+      fromList:
+        - ALL
+---
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: omjob-pin-image
+spec:
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  match:
+    scope: Namespaced
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/component: automation
+        app.kubernetes.io/managed-by: openmetadata
+        app.kubernetes.io/name: openmetadata
+  location: "spec.containers[name:*].image"
+  parameters:
+    assign:
+      value: docker.getcollate.io/openmetadata/ingestion-base:1.12.1

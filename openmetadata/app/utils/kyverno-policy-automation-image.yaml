@@ -1,0 +1,26 @@
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: mutate-openmetadata-automation-image
+spec:
+  background: false
+  rules:
+    - name: pin-openmetadata-automation-image
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+              selector:
+                matchLabels:
+                  app.kubernetes.io/component: automation
+                  app.kubernetes.io/managed-by: openmetadata
+                  app.kubernetes.io/name: openmetadata
+      mutate:
+        foreach:
+          - list: "request.object.spec.containers"
+            patchStrategicMerge:
+              spec:
+                containers:
+                  - name: "{{ element.name }}"
+                    image: docker.getcollate.io/openmetadata/ingestion-base:1.12.1
