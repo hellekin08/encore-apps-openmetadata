@@ -49,10 +49,6 @@ spec:
             backoffLimit: 3
             activeDeadlineSeconds: 7200
             ttlSecondsAfterFinished: 86400
-            extraEnvVars:
-              - AIRFLOW_HOME=/tmp/airflow
-              - AIRFLOW__LOGGING__BASE_LOG_FOLDER=/tmp/airflow/logs
-              - HOME=/tmp
             securityContext:
               runAsNonRoot: true
               runAsUser: 1000
