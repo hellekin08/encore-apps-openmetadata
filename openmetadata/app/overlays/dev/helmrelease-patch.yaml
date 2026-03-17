@@ -6,3 +6,17 @@ spec:
   values:
     ingress:
       enabled: false
+#    openmetadata:
+#      config:
+# database:
+#   enabled: true
+#   host: en-pg-dev-srv02.postgres.database.azure.com
+#   port: 5432
+#   driverClass: org.postgresql.Driver
+#   dbScheme: postgresql
+#   databaseName: en-pg-dev-encore-openmetadata
+#   auth:
+#     username: usr-en-pg-dev-encore-openmetadata-admin
+#     password:
+#       secretRef: postgres-secrets
+#       secretKey: openmetadata-postgres-password
