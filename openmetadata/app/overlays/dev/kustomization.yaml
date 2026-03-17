@@ -3,8 +3,7 @@ kind: Kustomization
 namespace: cx-fluxed-openmetadata-encore-ns
 resources:
   - ../../base
-  # - secrets.dev.yaml
-  - secrets.yaml
+  - secrets.dev.yaml
   - ingress.yaml
 patches:
   - path: helmrelease-patch.yaml
